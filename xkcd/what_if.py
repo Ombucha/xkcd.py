@@ -3,7 +3,7 @@ from __future__ import annotations
 from os.path import split
 from random import randint
 from urllib.parse import urlparse
-from urllib.request import urlopen, Request 
+from urllib.request import urlopen, Request
 from typing import Optional
 
 from bs4 import BeautifulSoup
