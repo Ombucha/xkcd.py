@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "xkcd.py"
+version = "1.0.0"
+description = "A basic API wrapper for xkcd."
+authors = ["Mr.Brawler <omkaar.nerurkar@gmail.com>"]
+license = "MIT"
+readme = "README.rst"
+repository = "https://github.com/Pysics/xkcd.py/"
+documentation = "https://xkcd.readthedocs.io/"
+keywords = ["python", "xkcd"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+packages = ["xkcd"]
+
+[tool.poetry.dependencies]
+beautifulsoup4 = "4.*.*"
+requests = "2.*.*"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/Pysics/xkcd.py/issues"

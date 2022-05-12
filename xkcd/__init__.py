@@ -16,4 +16,5 @@ __copyright__ = "Copyright 2022 Omkaar"
 __version__ = "1.0.0"
 
 
+from .comic import Comic
 from .what_if import WhatIfArticle

@@ -1,4 +1,7 @@
+from __future__ import annotations
+
 from os.path import split
+from random import randint
 from urllib.parse import urlparse
 from urllib.request import urlopen, Request 
 from typing import Optional
@@ -47,7 +50,10 @@ class WhatIfArticle:
             self.number = number
             self.text = text
 
-    def __init__(self, number: Optional[int] = None) -> None:
+    def __init__(self, number: Optional[int] = None, *, random = False) -> None:
+
+        if random and number:
+            raise ValueError("If 'random' is 'True', 'number' must not be specified.")
 
         page = Request(WHAT_IF_BASE_URL)
         with urlopen(page) as result:
@@ -55,16 +61,23 @@ class WhatIfArticle:
 
         url = [element["href"] for element in soup.find_all("a", href = True)][6]
         latest = int(urlparse(url).path[1:]) + 1
-        if number is None: 
-            self.number = latest
+        if random:
+            self.number = randint(1, latest)
         else:
-            if number > latest:
-                raise ValueError("You have chosen a comic after the latest one.")
-            self.number = number
+            if number is None:
+                self.number = latest
+            else:
+                if number > latest:
+                    raise ValueError("You have chosen a comic after the latest one.")
+                self.number = number
+
+        page = Request(f"{WHAT_IF_BASE_URL}{self.number}")
+        with urlopen(page) as result:
+            soup = BeautifulSoup(result.read(), "html.parser")
 
         self.entry = []
         for tag in soup.find_all():
-            identifier = False if "id" in tag.attrs.keys() else True
+            identifier = not "id" in tag.attrs.keys()
             if tag.parent.name == "article" and identifier:
                 children = list(tag.children)
                 if tag.name == "p" and len(children) > 0:
