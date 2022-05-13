@@ -17,38 +17,64 @@ class WhatIfArticle:
 
     """
     A class that represents a What If article.
+
+    :param number: The article's number.
+    :type number: Optional[:class:`int`]
+    :param random: Whether to choose a random article, or not.
+    :type random: Optional[:class:`bool`]
+
+    .. note::
+
+        If ``random`` is ``True``, ``number`` must not be specified.
+
+    :ivar entry: The article entry. It is a list of :class:`str`, :class:`Image`, :class:`Hyperlink` and :class:`Reference`.
+    :ivar number: The number of the article.
+    :ivar title: The article's title.
+    :ivar question: The question of the article.
+    :ivar author: The author of the article.
+    :ivar url: The article's URL.
     """
 
     class Image:
 
         """
         A class that represents an image.
+
+        :ivar url: The image's URL.
+        :ivar title: The image's title (Alt Text).
+        :ivar filename: The filename of the image.
         """
 
-        def __init__(self, url: str, title: str) -> None:
-            self.url = url
-            self.title = title
+        def __init__(self, _url: str, _title: str) -> None:
+            self.url = _url
+            self.title = _title
             self.filename = split(urlparse(self.url).path)[1]
 
     class Hyperlink:
 
         """
         A class that represents hyperlinked text.
+
+        :ivar url: The URL that hyperlink leads to.
+        :ivar text: The text shown on the hyperlink.
         """
 
-        def __init__(self, text: str, url: str) -> None:
-            self.text = text
-            self.url = url
+        def __init__(self, _text: str, _url: str) -> None:
+            self.text = _text
+            self.url = _url
 
     class Reference:
 
         """
         A class that represents a reference.
+
+        :ivar number: The reference's number.
+        :ivar text: The text shown upon hovering over the reference.
         """
 
-        def __init__(self, number: int, text: str) -> None:
-            self.number = number
-            self.text = text
+        def __init__(self, _number: int, _text: str) -> None:
+            self.number = _number
+            self.text = _text
 
     def __init__(self, number: Optional[int] = None, *, random = False) -> None:
 

@@ -16,17 +16,39 @@ class Comic:
 
     """
     A class that represents a comic.
+
+    :param number: The comic's number.
+    :type number: Optional[:class:`int`]
+    :param random: Whether to choose a random comic, or not.
+    :type random: Optional[:class:`bool`]
+
+    .. note::
+
+        If ``random`` is ``True``, ``number`` must not be specified.
+
+    :ivar date: The comic's date.
+    :ivar image: The URL of the comic's image.
+    :ivar number: The number of the comic.
+    :ivar title: The comic's title.
+    :ivar safe_title: A safe form of the comic's title.
+    :ivar transcript: The trascript of the comic.
+    :ivar wiki_url: The URL of the comic's wiki.
+    :ivar url: The comic's URL.
     """
 
     class Image:
 
         """
         A class that represents an image.
+
+        :ivar url: The image's URL.
+        :ivar title: The image's title (Alt Text).
+        :ivar filename: The filename of the image.
         """
 
-        def __init__(self, url: str, title: str) -> None:
-            self.url = url
-            self.title = title
+        def __init__(self, _url: str, _title: str) -> None:
+            self.url = _url
+            self.title = _title
             self.filename = split(urlparse(self.url).path)[1]
 
     def __init__(self, number: Optional[int] = None, *, random: Optional[bool] = False) -> None:
