@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "xkcd.py"
-version = "1.0.0"
+version = "1.0.1"
 description = "A basic API wrapper for xkcd."
 authors = ["Mr.Brawler <omkaar.nerurkar@gmail.com>"]
 license = "MIT"
@@ -16,8 +16,8 @@ classifiers = [
 packages = ["xkcd"]
 
 [tool.poetry.dependencies]
-beautifulsoup4 = "4.*.*"
-requests = "2.*.*"
+beautifulsoup4 = "4.11.*"
+requests = "2.27.*"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/Pysics/xkcd.py/issues"
