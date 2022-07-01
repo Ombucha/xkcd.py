@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "xkcd.py"
-version = "1.0.1"
+version = "1.0.2"
 description = "A basic API wrapper for xkcd."
 authors = ["Mr.Brawler <omkaar.nerurkar@gmail.com>"]
 license = "MIT"
