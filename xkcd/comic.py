@@ -78,7 +78,7 @@ class Comic:
 
     def __init__(self, number: Optional[int] = None, *, random: Optional[bool] = False) -> None:
 
-        if random and number is None:
+        if random and number:
             raise ValueError("If 'random' is 'True', 'number' must not be specified.")
 
         if random:
@@ -94,7 +94,7 @@ class Comic:
         self.safe_title = response["safe_title"]
         self.title = response["title"]
         self.transcript = unescape(response["transcript"])
-        self.image = self.Image(response["url"], response["alt"])
+        self.image = self.Image(response["img"], response["alt"])
 
         self.wiki_url = f"{XKCD_WIKI_BASE_URL}{self.number}"
         self.url = f"{XKCD_BASE_URL}{self.number}"
