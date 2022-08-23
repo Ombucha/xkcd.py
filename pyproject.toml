@@ -2,10 +2,10 @@
 name = "xkcd.py"
 version = "1.0.3"
 description = "A basic API wrapper for xkcd."
-authors = ["Mr.Brawler <omkaar.nerurkar@gmail.com>"]
+authors = ["Infiniticity <omkaar.nerurkar@gmail.com>"]
 license = "MIT"
 readme = "README.rst"
-repository = "https://github.com/Pysics/xkcd.py/"
+repository = "https://github.com/Infiniticity/xkcd.py/"
 documentation = "https://xkcd.readthedocs.io/"
 keywords = ["python", "xkcd"]
 classifiers = [
@@ -20,4 +20,4 @@ beautifulsoup4 = "4.11.*"
 requests = "2.27.*"
 
 [tool.poetry.urls]
-"Bug Tracker" = "https://github.com/Pysics/xkcd.py/issues"
+"Bug Tracker" = "https://github.com/Infiniticity/xkcd.py/issues"

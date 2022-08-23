@@ -10,7 +10,7 @@ A basic API wrapper for xkcd.
 
 
 __title__ = "xkcd.py"
-__author__ = "Pysics"
+__author__ = "Infiniticity"
 __license__ = "MIT"
 __copyright__ = "Copyright 2022 Omkaar"
 __version__ = "1.0.3"

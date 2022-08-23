@@ -11,7 +11,7 @@ setup(
     description = "A basic API wrapper for xkcd.",
     long_description = README,
     long_description_content_type = "text/x-rst",
-    url = "https://github.com/Pysics/xkcd.py",
+    url = "https://github.com/Infiniticity/xkcd.py",
     author = "Omkaar",
     author_email = "omkaar.nerurkar@gmail.com",
     license = "MIT",

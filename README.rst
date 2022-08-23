@@ -1,11 +1,11 @@
 xkcd.py
 ===========
 
-.. image:: https://img.shields.io/github/license/pysics/xkcd.py
-    :target: https://github.com/Pysics/xkcd.py/blob/main/LICENSE.md
+.. image:: https://img.shields.io/github/license/Infiniticity/xkcd.py
+    :target: https://github.com/Infiniticity/xkcd.py/blob/main/LICENSE.md
     :alt: license
-.. image:: https://img.shields.io/tokei/lines/github/pysics/xkcd.py
-    :target: https://github.com/Pysics/xkcd.py/graphs/contributors
+.. image:: https://img.shields.io/tokei/lines/github/Infiniticity/xkcd.py
+    :target: https://github.com/Infiniticity/xkcd.py/graphs/contributors
     :alt: lines of code
 .. image:: https://img.shields.io/pypi/v/xkcd.py
     :target: https://pypi.python.org/pypi/xkcd.py
@@ -43,7 +43,7 @@ To install the development version, do the following:
 
 .. code-block:: sh
 
-    $ git clone https://github.com/Pysics/xkcd.py
+    $ git clone https://github.com/Infiniticity/xkcd.py
 
 
 Links
