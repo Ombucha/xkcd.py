@@ -22,6 +22,8 @@ SOFTWARE.
 """
 
 
+# pylint: skip-file
+
 import unittest
 import xkcd
 
