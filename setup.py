@@ -7,11 +7,11 @@ README = (HERE / "README.rst").read_text()
 
 setup(
     name = "xkcd.py",
-    version = "1.0.4",
+    version = "1.1.0",
     description = "A basic API wrapper for xkcd.",
     long_description = README,
     long_description_content_type = "text/x-rst",
-    url = "https://github.com/Infiniticity/xkcd.py",
+    url = "https://github.com/Ombucha/xkcd.py",
     author = "Omkaar",
     author_email = "omkaar.nerurkar@gmail.com",
     license = "MIT",

@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "xkcd.py"
-version = "1.0.4"
+version = "1.1.0"
 description = "A basic API wrapper for xkcd."
-authors = ["Infiniticity <omkaar.nerurkar@gmail.com>"]
+authors = ["Ombucha <omkaar.nerurkar@gmail.com>"]
 license = "MIT"
 readme = "README.rst"
-repository = "https://github.com/Infiniticity/xkcd.py/"
+repository = "https://github.com/Ombucha/xkcd.py/"
 documentation = "https://xkcd.readthedocs.io/"
-keywords = ["python", "xkcd"]
+keywords = ["python", "xkcd", "what if", "comics"]
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python",
@@ -16,8 +16,8 @@ classifiers = [
 packages = ["xkcd"]
 
 [tool.poetry.dependencies]
-beautifulsoup4 = "4.11.*"
-requests = "2.27.*"
+beautifulsoup4 = "*"
+requests = "*"
 
 [tool.poetry.urls]
-"Bug Tracker" = "https://github.com/Infiniticity/xkcd.py/issues"
+"Bug Tracker" = "https://github.com/Ombucha/xkcd.py/issues"

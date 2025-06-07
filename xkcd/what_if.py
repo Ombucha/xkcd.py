@@ -1,7 +1,7 @@
 """
 MIT License
 
-Copyright (c) 2022 Omkaar
+Copyright (c) 2025 Omkaar
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -104,12 +104,12 @@ class WhatIfArticle:
         if random and number:
             raise ValueError("If 'random' is 'True', 'number' must not be specified.")
 
-        page = Request(WHAT_IF_BASE_URL)
+        page = Request(f"{WHAT_IF_BASE_URL}archive")
         with urlopen(page) as result:
             soup = BeautifulSoup(result.read(), "html.parser")
 
-        url = [element["href"] for element in soup.find_all("a", href = True)][6]
-        latest = int(urlparse(url).path[1:]) + 1
+        entries = soup.find_all("div", {"class": "archive-entry"})
+        latest = int(entries[-1].a.attrs["href"].split("/")[-1])
         if random:
             self.number = randint(1, latest)
         else:
@@ -143,5 +143,5 @@ class WhatIfArticle:
 
         self.title = soup.find("h2", {"id": "title"}).a.text
         self.question = soup.find("p", {"id": "question"}).text
-        self.author = soup.find("p", {"id": "attribute"}).text
+        self.author = soup.find("p", {"id": "attribute"}).text[1:]
         self.url = f"{WHAT_IF_BASE_URL}{self.number}"
