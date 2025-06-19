@@ -3,13 +3,13 @@
 .. image:: https://img.shields.io/pypi/v/xkcd.py
     :target: https://pypi.python.org/pypi/xkcd.py
     :alt: PyPI version
-.. image:: https://img.shields.io/pypi/dm/xkcd.py
+.. image:: https://static.pepy.tech/personalized-badge/xkcd.py?period=total&left_text=downloads&left_color=grey&right_color=red
     :target: https://pypi.python.org/pypi/xkcd.py
     :alt: PyPI downloads
-.. image:: https://sloc.xyz/github/Ombucha/xkcd.py
+.. image:: https://sloc.xyz/github/Ombucha/xkcd.py?lower=True
     :target: https://github.com/Ombucha/xkcd.py/graphs/contributors
     :alt: Lines of code
-.. image:: https://img.shields.io/github/repo-size/Ombucha/xkcd.py
+.. image:: https://img.shields.io/github/repo-size/Ombucha/xkcd.py?color=yellow
     :target: https://github.com/Ombucha/xkcd.py
     :alt: Repository size
 
