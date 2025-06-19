@@ -86,6 +86,12 @@ class WhatIfArticle:
             self.text = _text
             self.url = _url
 
+        def __str__(self) -> str:
+            return self.text
+
+        def __repr__(self) -> str:
+            return f"<Hyperlink text={self.text!r} url={self.url!r}>"
+
     class Reference:
 
         """
@@ -98,6 +104,15 @@ class WhatIfArticle:
         def __init__(self, _number: int, _text: str) -> None:
             self.number = _number
             self.text = _text
+
+        def __int__(self) -> int:
+            return self.number
+
+        def __str__(self) -> str:
+            return self.text
+
+        def __repr__(self) -> str:
+            return f"<Reference number={self.number!r} text={self.text!r}>"
 
     def __init__(self, number: Optional[int] = None, *, random = False) -> None:
 
