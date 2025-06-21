@@ -28,7 +28,7 @@ from html import unescape
 from os.path import split
 from random import randint
 from urllib.parse import urlparse
-from typing import Optional, Generator
+from typing import Optional, Generator, Union
 from subprocess import run
 from platform import system
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -137,7 +137,7 @@ class Comic:
         """
         run(['open' if system() == 'Darwin' else 'xdg-open' if system() == 'Linux' else 'start', self.download(filename=filename, path=path)], shell=True, check=False)
 
-def stream(start: int = 1, end: Optional[int] = None) -> Generator[Comic]:
+def stream(start: int = 1, end: Optional[int] = None) -> Generator[Comic, None, None]:
     """
     Streams comics from the specified start to end comic number.
 
@@ -154,7 +154,7 @@ def stream(start: int = 1, end: Optional[int] = None) -> Generator[Comic]:
     for number in range(start, end + 1):
         yield Comic(number)
 
-def get_comic_from_date(release_date: datetime | date, *, max_workers: Optional[int] = 32) -> Optional[Comic]:
+def get_comic_from_date(release_date: Union[datetime, date], *, max_workers: Optional[int] = 32) -> Optional[Comic]:
     """
     Gets a comic by its date if it exists.
 
@@ -189,7 +189,7 @@ def get_comic_from_date(release_date: datetime | date, *, max_workers: Optional[
 
     return None
 
-def search(query: str, *, max_workers: Optional[int] = 32) -> Generator[Comic]:
+def search(query: str, *, max_workers: Optional[int] = 32) -> Generator[Comic, None, None]:
     """
     Searches for comics by title or alt text.
 
