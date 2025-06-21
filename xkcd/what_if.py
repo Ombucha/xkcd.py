@@ -68,9 +68,9 @@ class WhatIfArticle:
         :ivar filename: The filename of the image.
         """
 
-        def __init__(self, _url: str, _title: str) -> None:
-            self.url = _url
-            self.title = _title
+        def __init__(self, url: str, title: str) -> None:
+            self.url = url
+            self.title = title
             self.filename = split(urlparse(self.url).path)[1]
 
     class Hyperlink:
@@ -82,9 +82,9 @@ class WhatIfArticle:
         :ivar text: The text shown on the hyperlink.
         """
 
-        def __init__(self, _text: str, _url: str) -> None:
-            self.text = _text
-            self.url = _url
+        def __init__(self, text: str, url: str) -> None:
+            self.text = text
+            self.url = url
 
         def __str__(self) -> str:
             return self.text

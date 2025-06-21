@@ -13,8 +13,8 @@ __title__ = "xkcd.py"
 __author__ = "Ombucha"
 __license__ = "MIT"
 __copyright__ = "Copyright 2025 Omkaar"
-__version__ = "1.1.0"
+__version__ = "1.2.0"
 
 
-from .comic import Comic
-from .what_if import WhatIfArticle
+from .comic import *
+from .what_if import *

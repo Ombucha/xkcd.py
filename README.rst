@@ -66,17 +66,17 @@ Quick Example
     import xkcd
 
     # Get the latest comic (fingers crossed it's not about regular expressions)
-    comic = xkcd.get_latest()
-    print(f"{comic.num}: {comic.title} - {comic.img}")
+    comic = xkcd.Comic()
+    print(f"{comic.number}: {comic.title} - {comic.image.url}")
 
     # Get a specific comic by number (353 is a classic)
-    comic = xkcd.get_comic(353)
-    print(f"{comic.num}: {comic.title} - {comic.alt}")
+    comic = xkcd.Comic(353)
+    print(f"{comic.number}: {comic.title} - {comic.image.title}")
 
     # Search for comics about Python (the language, not the snake)
     results = xkcd.search("Python")
     for comic in results:
-        print(f"{comic.num}: {comic.title}")
+        print(f"{comic.number}: {comic.title}")
 
 Links
 -----

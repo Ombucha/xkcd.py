@@ -1,3 +1,5 @@
+# pylint: skip-file
+
 from pathlib import Path
 
 from setuptools import setup
@@ -7,7 +9,7 @@ README = (HERE / "README.rst").read_text()
 
 setup(
     name = "xkcd.py",
-    version = "1.1.0",
+    version = "1.2.0",
     description = "A basic API wrapper for xkcd.",
     long_description = README,
     long_description_content_type = "text/x-rst",

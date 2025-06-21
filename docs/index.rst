@@ -36,7 +36,14 @@ Comic
 
 
 What If Article
------
+---------------
 
 .. autoclass:: xkcd.WhatIfArticle
     :members:
+
+Other Functions
+---------------
+
+.. autofunction:: xkcd.search
+.. autofunction:: xkcd.get_comic_from_date
+.. autofunction:: xkcd.stream
