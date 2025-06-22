@@ -87,9 +87,14 @@ class TestComic(unittest.TestCase):
 
     def test_get_comic_from_date(self):
         comic = xkcd.Comic(1)
-        found = get_comic_from_date(comic.date)
+        found_gen = get_comic_from_date(comic.date)
+        found = None
+        for c in found_gen:
+            if c.number == 1:
+                found = c
+                break
         self.assertIsNotNone(found)
-        self.assertEqual(found[0].number, 1)
+        self.assertEqual(found.number, 1)
 
 if __name__ == "__main__":
     unittest.main()
