@@ -28,6 +28,8 @@ SOFTWARE.
 import unittest
 import xkcd
 
+from xkcd import stream_comics, get_comic_from_date, search_comics
+
 class TestComic(unittest.TestCase):
     def test_latest_comic(self):
         comic = xkcd.Comic()
@@ -36,7 +38,7 @@ class TestComic(unittest.TestCase):
         self.assertTrue(comic.url.startswith("https://xkcd.com/"))
         self.assertIsInstance(comic.image, xkcd.Comic.Image)
         self.assertIsInstance(comic.image.url, str)
-        self.assertIsInstance(comic.image.title, str)
+        self.assertIsInstance(comic.image.alt, str)
         self.assertIsInstance(comic.image.filename, str)
         self.assertIsInstance(comic.transcript, str)
         self.assertIsInstance(comic.date, object)
@@ -58,7 +60,7 @@ class TestComic(unittest.TestCase):
         img = comic.image
         self.assertIsInstance(img, xkcd.Comic.Image)
         self.assertIsInstance(img.url, str)
-        self.assertIsInstance(img.title, str)
+        self.assertIsInstance(img.alt, str)
         self.assertIsInstance(img.filename, str)
 
     def test_invalid_random_and_number(self):
@@ -69,6 +71,25 @@ class TestComic(unittest.TestCase):
         # Try a very large number, should raise ValueError
         with self.assertRaises(Exception):
             xkcd.Comic(999999)
+
+    def test_repr(self):
+        comic = xkcd.Comic(1)
+        rep = repr(comic)
+        self.assertIn("Comic", rep)
+        self.assertIn("number=1", rep)
+        self.assertIn(comic.title, rep)
+
+    def test_stream_comics(self):
+        comics = list(stream_comics(1, 2))
+        self.assertEqual(len(comics), 2)
+        self.assertEqual(comics[0].number, 1)
+        self.assertEqual(comics[1].number, 2)
+
+    def test_get_comic_from_date(self):
+        comic = xkcd.Comic(1)
+        found = get_comic_from_date(comic.date)
+        self.assertIsNotNone(found)
+        self.assertEqual(found[0].number, 1)
 
 if __name__ == "__main__":
     unittest.main()

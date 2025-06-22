@@ -55,7 +55,7 @@ class Comic:
         If ``random`` is ``True``, ``number`` must not be specified.
 
     :ivar date: The comic's date.
-    :ivar image: The URL of the comic's image.
+    :ivar image: The comic's image.
     :ivar number: The number of the comic.
     :ivar title: The comic's title.
     :ivar safe_title: A safe form of the comic's title.
@@ -70,14 +70,17 @@ class Comic:
         A class that represents an image.
 
         :ivar url: The image's URL.
-        :ivar title: The image's title (Alt Text).
+        :ivar title: The image's Alt text.
         :ivar filename: The filename of the image.
         """
 
-        def __init__(self, url: str, title: str) -> None:
+        def __init__(self, url: str, alt: str) -> None:
             self.url = url
-            self.title = title
+            self.alt = alt
             self.filename = split(urlparse(self.url).path)[1]
+
+        def __repr__(self) -> str:
+            return f"<Image url={self.url!r} alt={self.alt!r}>"
 
     def __init__(self, number: Optional[int] = None, *, random: Optional[bool] = False) -> None:
 
@@ -108,6 +111,17 @@ class Comic:
     def __repr__(self) -> str:
         return f"<Comic number={self.number} title={self.title!r} date={self.date}>"
 
+    def __str__(self) -> str:
+        return self.transcript
+
+    def __int__(self) -> int:
+        return self.number
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Comic):
+            return NotImplemented
+        return self.number == other.number
+
     def download(self, *, filename: Optional[str] = None, path: Optional[str] = None) -> str:
         """
         Downloads the comic image.
@@ -137,7 +151,7 @@ class Comic:
         """
         run(['open' if system() == 'Darwin' else 'xdg-open' if system() == 'Linux' else 'start', self.download(filename=filename, path=path)], shell=True, check=False)
 
-def stream(start: int = 1, end: Optional[int] = None) -> Generator[Comic, None, None]:
+def stream_comics(start: int = 1, end: Optional[int] = None) -> Generator[Comic, None, None]:
     """
     Streams comics from the specified start to end comic number.
 
@@ -154,7 +168,7 @@ def stream(start: int = 1, end: Optional[int] = None) -> Generator[Comic, None, 
     for number in range(start, end + 1):
         yield Comic(number)
 
-def get_comic_from_date(release_date: Union[datetime, date], *, max_workers: Optional[int] = 32) -> Optional[Comic]:
+def get_comic_from_date(release_date: Union[datetime, date], *, max_workers: Optional[int] = 32) -> Optional[Generator[Comic, None, None]]:
     """
     Gets a comic by its date if it exists.
 
@@ -170,14 +184,23 @@ def get_comic_from_date(release_date: Union[datetime, date], *, max_workers: Opt
     if isinstance(release_date, datetime):
         release_date = release_date.date()
     latest = get(f"{XKCD_BASE_URL}info.0.json").json()["num"]
+    maximum = None
 
     def try_comic(number: int):
+        nonlocal maximum
+
+        if maximum and number > maximum:
+            return None
+
         try:
             comic = Comic(number)
+            if comic.date > release_date:
+                maximum = number - 1
             if comic.date == release_date:
                 return comic
         except RuntimeError:
             pass
+
         return None
 
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -185,11 +208,9 @@ def get_comic_from_date(release_date: Union[datetime, date], *, max_workers: Opt
         for future in as_completed(futures):
             result = future.result()
             if result:
-                return result
+                yield result
 
-    return None
-
-def search(query: str, *, max_workers: Optional[int] = 32) -> Generator[Comic, None, None]:
+def search_comics(query: str, *, max_workers: Optional[int] = 32) -> Generator[Comic, None, None]:
     """
     Searches for comics by title or alt text.
 
@@ -208,7 +229,7 @@ def search(query: str, *, max_workers: Optional[int] = 32) -> Generator[Comic, N
     def try_comic(number: int):
         try:
             comic = Comic(number)
-            if query.lower() in str(comic.__dict__).lower():
+            if query.lower() in "".join([str(comic.number), str(comic.date), comic.title, comic.safe_title, comic.image.url, comic.image.alt, comic.transcript, comic.url, comic.wiki_url]).lower():
                 return comic
         except RuntimeError:
             pass

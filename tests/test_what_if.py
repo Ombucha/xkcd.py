@@ -56,7 +56,7 @@ class TestWhatIfArticle(unittest.TestCase):
         images = [e for e in article.entry if isinstance(e, xkcd.WhatIfArticle.Image)]
         for img in images:
             self.assertIsInstance(img.url, str)
-            self.assertIsInstance(img.title, str)
+            self.assertIsInstance(img.alt, str)
             self.assertIsInstance(img.filename, str)
 
     def test_hyperlink_class(self):
